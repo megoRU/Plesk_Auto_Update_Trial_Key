@@ -23,6 +23,7 @@ public class Main {
     Statement statement = conn.createStatement();
     ResultSet rs = statement.executeQuery(sql);
 
+
     while (rs.next()) {
       String id = rs.getString("id");
       String text = rs.getString("text");
