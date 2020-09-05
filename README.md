@@ -13,6 +13,20 @@ private static final String SSH_HOST = ""; // IP <br>
 private static final String SSH_LOGIN = ""; // LOGIN <br>
 private static final String SSH_PASSWORD = ""; // PASS <br>
 
+## SQL syntax:
+
+```
+CREATE TABLE `Plesk` (
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `text` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `text` (`text`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+```
+```
+INSERT INTO Plesk (id, text) values (0, "Your Key"); //reset to zero SQL set not zero
+```
+
 
 ## FAQ & Troubleshooting
 
