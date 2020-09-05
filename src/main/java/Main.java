@@ -29,7 +29,7 @@ public class Main {
       keys.put(Integer.parseInt(id), text);
      // System.out.println(id + ". " + text + "\n");
     }
-    System.out.println(keys.get(0));
+    //System.out.println(keys.get(0));
 
 //    System.out.println(RunCommandViaSsh.runCommand("pwd"));
 //    System.out.println(RunCommandViaSsh.runCommand("bin/rm -rf /etc/sw/keys/keys/key*"));
