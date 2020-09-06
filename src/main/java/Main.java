@@ -1,3 +1,8 @@
+import com.jcraft.jsch.Channel;
+import com.jcraft.jsch.ChannelExec;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.Session;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -20,7 +25,6 @@ public class Main {
         String query = "SELECT id, text FROM Plesk WHERE id = 0";
         String delete = "DELETE FROM Plesk WHERE id = ?";
         String update = "UPDATE Plesk SET id = id - 1 WHERE id >= ?";
-        // String sql = "SELECT id, text FROM Plesk " + "ORDER BY id DESC";
         Connection conn = DriverManager.getConnection(CONN, USER, PASS);
         Statement statement = conn.createStatement();
         ResultSet rs = statement.executeQuery(query);
@@ -28,15 +32,10 @@ public class Main {
           String id = rs.getString("id");
           String text = rs.getString("text");
           keys.put(Integer.parseInt(id), text);
-          // System.out.println(id + ". " + text + "\n");
         }
-
+        String command = "cd /; usr/sbin/plesk bin license -i " + keys.get(0).toString().trim();
         System.out.println(keys.get(0));
-
-        System.out.println(RunCommandViaSsh.runCommand("pwd"));
-        System.out.println(RunCommandViaSsh.runCommand("bin/rm -rf /etc/sw/keys/keys/key*"));
-        System.out
-            .println(RunCommandViaSsh.runCommand("usr/sbin/plesk bin license -i " + keys.get(0)));
+        RunCommandViaSsh.runCommand(command);
 
         //remove from DB and HashMap
         keys.remove(0);
