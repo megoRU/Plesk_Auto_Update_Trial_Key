@@ -35,6 +35,11 @@ INSERT INTO Plesk (id, text) values (2, "Your Key3");
 
 java -jar Plesk_Auto_Update_Trial_Key.jar "ip address MySQL" "user MySQL" "pass MySQL" "ip address SSH" "login SSH" "pass SSH"
 
+## Run on Linux (Debian/Ubuntu):
+sudo apt-get install screen <br>
+
+screen -dmS jar1 bash -c "java -jar Plesk_Auto_Update_Trial_Key.jar "ip address MySQL" "user MySQL" "pass MySQL" "ip address SSH" "login SSH" "pass SSH" "
+
 ## Get free key:
 https://www.plesk.com/plesk-free-download/ <br>
 https://temp-mail.org/ru/ <br>
