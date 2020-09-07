@@ -13,19 +13,28 @@ import java.util.HashMap;
 
 public class Main {
 
-  private static final String CONN = "jdbc:mysql://95.181.157.159:3306/admin_plesk2?useSSL=false&serverTimezone=UTC&characterEncoding=utf8";
+  private static final String CONN = "";
   private static final String USER = "";
   private static final String PASS = "";
+  private static final String SSH_HOST = "";
+  private static final String SSH_LOGIN = "";
+  private static final String SSH_PASSWORD = "";
   private static final HashMap<Integer, String> keys = new HashMap<Integer, String>();
 
 
   public static void main(String[] args) {
+    String con = args[0];
+    String user = args[1];
+    String pass = args[2];
+    String sshHost = args[3];
+    String sshLogin = args[4];
+    String sshPass = args[5];
     try {
       for (; ; ) {
         String query = "SELECT id, text FROM Plesk WHERE id = 0";
         String delete = "DELETE FROM Plesk WHERE id = ?";
         String update = "UPDATE Plesk SET id = id - 1 WHERE id >= ?";
-        Connection conn = DriverManager.getConnection(CONN, USER, PASS);
+        Connection conn = DriverManager.getConnection("jdbc:mysql://" + con + ":3306/admin_plesk2?useSSL=false&serverTimezone=UTC&characterEncoding=utf8", user, pass);
         Statement statement = conn.createStatement();
         ResultSet rs = statement.executeQuery(query);
         while (rs.next()) {
@@ -35,7 +44,7 @@ public class Main {
         }
         String command = "cd /; usr/sbin/plesk bin license -i " + keys.get(0).toString().trim();
         System.out.println(keys.get(0));
-        RunCommandViaSsh.runCommand(command);
+        runCommand(command, sshPass, sshLogin, sshHost);
 
         //remove from DB and HashMap
         keys.remove(0);
@@ -50,6 +59,51 @@ public class Main {
       }
     } catch (Exception ex) {
       ex.printStackTrace();
+    }
+  }
+
+  protected static void runCommand(String command, String pass, String login, String host) {
+
+    java.util.Properties config = new java.util.Properties();
+    config.put("StrictHostKeyChecking", "no");
+    JSch jsch = new JSch();
+    try {
+      Session session = jsch.getSession(login, host, 22);
+      session.setPassword(pass);
+      session.setConfig(config);
+      session.connect();
+      System.out.println("Connected");
+
+      Channel channel = session.openChannel("exec");
+      ((ChannelExec) channel).setCommand(command);
+      channel.setInputStream(null);
+      ((ChannelExec) channel).setErrStream(System.err);
+
+      InputStream in = channel.getInputStream();
+      channel.connect();
+      byte[] tmp = new byte[1024];
+      while (true) {
+        while (in.available() > 0) {
+          int i = in.read(tmp, 0, 1024);
+          if (i < 0)
+            break;
+          System.out.print(new String(tmp, 0, i));
+        }
+        if (channel.isClosed()) {
+          System.out.println("exit-status: " + channel.getExitStatus());
+          break;
+        }
+        try {
+          Thread.sleep(1000);
+        } catch (Exception ee) {
+
+        }
+      }
+      channel.disconnect();
+      session.disconnect();
+      System.out.println("DONE");
+    } catch (Exception exx) {
+      exx.printStackTrace();
     }
   }
 }
