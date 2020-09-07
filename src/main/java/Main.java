@@ -13,14 +13,7 @@ import java.util.HashMap;
 
 public class Main {
 
-  private static final String CONN = "";
-  private static final String USER = "";
-  private static final String PASS = "";
-  private static final String SSH_HOST = "";
-  private static final String SSH_LOGIN = "";
-  private static final String SSH_PASSWORD = "";
   private static final HashMap<Integer, String> keys = new HashMap<Integer, String>();
-
 
   public static void main(String[] args) {
     String con = args[0];
@@ -63,7 +56,6 @@ public class Main {
   }
 
   protected static void runCommand(String command, String pass, String login, String host) {
-
     java.util.Properties config = new java.util.Properties();
     config.put("StrictHostKeyChecking", "no");
     JSch jsch = new JSch();
