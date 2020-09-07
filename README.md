@@ -27,6 +27,9 @@ CREATE TABLE `Plesk` (
 INSERT INTO Plesk (id, text) values (0, "Your Key"); //reset to zero SQL set not zero
 ```
 
+## Launch parameters:
+
+java -jar Plesk_Auto_Update_Trial_Key.jar "ip address MySQL" "user MySQL" "pass MySQL" "ip address SSH" "login SSH" "pass SSH"
 
 ## FAQ & Troubleshooting
 
