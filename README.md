@@ -34,6 +34,10 @@ INSERT INTO Plesk (id, text) values (0, "Your Key"); //reset to zero SQL set not
 
 java -jar Plesk_Auto_Update_Trial_Key.jar "ip address MySQL" "user MySQL" "pass MySQL" "ip address SSH" "login SSH" "pass SSH"
 
+## Get free key:
+https://www.plesk.com/plesk-free-download/ <br>
+https://temp-mail.org/ru/ <br>
+
 ## FAQ & Troubleshooting
 
 • On Windows/MacOS, install Oracle Java from [here](https://www.oracle.com/java/technologies/javase-downloads.html) or OpenJDK from [here](https://adoptopenjdk.net/).
