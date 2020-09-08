@@ -23,10 +23,11 @@ public class Main {
         final String sshHost = args[3];
         final String sshLogin = args[4];
         final String sshPass = args[5];
+        final String databaseName = args[6];
         String query = "SELECT id, text FROM Plesk WHERE id = 0";
         String delete = "DELETE FROM Plesk WHERE id = ?";
         String update = "UPDATE Plesk SET id = id - 1 WHERE id >= ?";
-        Connection conn = DriverManager.getConnection("jdbc:mysql://" + con + ":3306/admin_plesk2?useSSL=false&serverTimezone=UTC&characterEncoding=utf8", user, pass);
+        Connection conn = DriverManager.getConnection("jdbc:mysql://" + con + ":3306/" + databaseName + "?useSSL=false&serverTimezone=UTC&characterEncoding=utf8", user, pass);
         Statement statement = conn.createStatement();
         ResultSet rs = statement.executeQuery(query);
         while (rs.next()) {
@@ -38,7 +39,7 @@ public class Main {
         System.out.println(keys.get(0));
         runCommand(command, sshPass, sshLogin, sshHost);
 
-        //remove from DB and HashMap
+        //remove from DB and HashMap and close connections
         keys.remove(0);
         PreparedStatement preparedStmt = conn.prepareStatement(delete);
         PreparedStatement preparedStmt2 = conn.prepareStatement(update);
