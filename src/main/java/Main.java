@@ -10,24 +10,24 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.HashMap;
 
-
 public class Main {
 
   private static final HashMap<Integer, String> keys = new HashMap<Integer, String>();
 
   public static void main(String[] args) {
-    String con = args[0];
-    String user = args[1];
-    String pass = args[2];
-    String sshHost = args[3];
-    String sshLogin = args[4];
-    String sshPass = args[5];
     try {
       for (; ; ) {
+        final String con = args[0];
+        final String user = args[1];
+        final String pass = args[2];
+        final String sshHost = args[3];
+        final String sshLogin = args[4];
+        final String sshPass = args[5];
+        final String databaseName = args[6];
         String query = "SELECT id, text FROM Plesk WHERE id = 0";
         String delete = "DELETE FROM Plesk WHERE id = ?";
         String update = "UPDATE Plesk SET id = id - 1 WHERE id >= ?";
-        Connection conn = DriverManager.getConnection("jdbc:mysql://" + con + ":3306/admin_plesk2?useSSL=false&serverTimezone=UTC&characterEncoding=utf8", user, pass);
+        Connection conn = DriverManager.getConnection("jdbc:mysql://" + con + ":3306/" + databaseName + "?useSSL=false&serverTimezone=UTC&characterEncoding=utf8", user, pass);
         Statement statement = conn.createStatement();
         ResultSet rs = statement.executeQuery(query);
         while (rs.next()) {
@@ -39,7 +39,7 @@ public class Main {
         System.out.println(keys.get(0));
         runCommand(command, sshPass, sshLogin, sshHost);
 
-        //remove from DB and HashMap
+        //remove from DB and HashMap and close connections
         keys.remove(0);
         PreparedStatement preparedStmt = conn.prepareStatement(delete);
         PreparedStatement preparedStmt2 = conn.prepareStatement(update);
@@ -47,6 +47,11 @@ public class Main {
         preparedStmt2.setInt(1, 0);
         preparedStmt.executeUpdate();
         preparedStmt2.executeUpdate();
+        rs.close();
+        statement.close();
+        preparedStmt.close();
+        preparedStmt2.close();
+        conn.close();
         //sleep 11,5 days
         Thread.sleep(999999999);
       }
