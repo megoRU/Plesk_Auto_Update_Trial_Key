@@ -10,20 +10,19 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.HashMap;
 
-
 public class Main {
 
   private static final HashMap<Integer, String> keys = new HashMap<Integer, String>();
 
   public static void main(String[] args) {
-    String con = args[0];
-    String user = args[1];
-    String pass = args[2];
-    String sshHost = args[3];
-    String sshLogin = args[4];
-    String sshPass = args[5];
     try {
       for (; ; ) {
+        final String con = args[0];
+        final String user = args[1];
+        final String pass = args[2];
+        final String sshHost = args[3];
+        final String sshLogin = args[4];
+        final String sshPass = args[5];
         String query = "SELECT id, text FROM Plesk WHERE id = 0";
         String delete = "DELETE FROM Plesk WHERE id = ?";
         String update = "UPDATE Plesk SET id = id - 1 WHERE id >= ?";
@@ -47,6 +46,11 @@ public class Main {
         preparedStmt2.setInt(1, 0);
         preparedStmt.executeUpdate();
         preparedStmt2.executeUpdate();
+        rs.close();
+        statement.close();
+        preparedStmt.close();
+        preparedStmt2.close();
+        conn.close();
         //sleep 11,5 days
         Thread.sleep(999999999);
       }
