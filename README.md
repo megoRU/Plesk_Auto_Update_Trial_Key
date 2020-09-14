@@ -8,10 +8,9 @@ Plesk trial key auto-update
 
 ## Disclaimer
 
-```diff
-- I am against the abuse of free licenses. This code is presented for informational purposes only. Using it can and probably violates Plesk rules. 
-- The author is not responsible for any material losses incurred by Plesk.
-```
+
+<b>I am against the abuse of free licenses. This code is presented for informational purposes only. Using it can and probably violates Plesk rules. The author is not responsible for any material losses incurred by Plesk.</b>
+
 
 ## Create table in MySQL:
 
