@@ -28,8 +28,8 @@ INSERT INTO Plesk (id, text) values (1, "Your Key2");
 INSERT INTO Plesk (id, text) values (2, "Your Key3");
 ```
 
-## Launch parameters .bat:
-
+##  Run on Windows:
+bat file<br>
 java -jar Plesk_Auto_Update_Trial_Key.jar "ip address MySQL" "user MySQL" "pass MySQL" "ip address SSH" "login SSH" "pass SSH" "database name mysql"
 
 ## Run on Linux (Debian/Ubuntu):
@@ -40,7 +40,7 @@ echo "JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/" >> /etc/environment <br>
 source /etc/environment <br>
 echo $JAVA_HOME <br>
 
-screen -dmS jar1 bash -c "java -jar Plesk_Auto_Update_Trial_Key.jar "ip address MySQL" "user MySQL" "pass MySQL" "ip address SSH" "login SSH" "pass SSH" "database name mysql" "
+screen -dmS pleskKey bash -c "java -jar Plesk_Auto_Update_Trial_Key.jar "ip address MySQL" "user MySQL" "pass MySQL" "ip address SSH" "login SSH" "pass SSH" "database name mysql" "
 
 ## Get free key:
 https://www.plesk.com/plesk-free-download/ <br>
