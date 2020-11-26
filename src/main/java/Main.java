@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 public class Main {
 
-  private static final HashMap<Integer, String> keys = new HashMap<Integer, String>();
+  private static final HashMap<Integer, String> keys = new HashMap<>();
 
   public static void main(String[] args) {
     try {
