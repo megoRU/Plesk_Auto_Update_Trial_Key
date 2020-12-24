@@ -34,11 +34,10 @@ java -jar Plesk_Auto_Update_Trial_Key.jar "ip address MySQL" "user MySQL" "pass 
 
 ## Run on Linux (Debian/Ubuntu):
 sudo apt-get install screen <br>
-sudo apt-get install openjdk-11-jre openjdk-11-jdk <br>
+sudo apt-get install openjdk-15-jdk <br>
+export JAVA_HOME=/usr/lib/jvm/openjdk-11-jdk <br>
+export PATH=$PATH:$JAVA_HOME/bin <br>
 java -version <br>
-echo "JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/" >> /etc/environment <br>
-source /etc/environment <br>
-echo $JAVA_HOME <br>
 
 screen -dmS pleskKey bash -c "java -jar Plesk_Auto_Update_Trial_Key.jar "ip address MySQL" "user MySQL" "pass MySQL" "ip address SSH" "login SSH" "pass SSH" "database name mysql" "
 
