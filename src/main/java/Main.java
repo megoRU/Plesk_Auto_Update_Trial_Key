@@ -35,7 +35,7 @@ public class Main {
           String text = rs.getString("text");
           keys.put(Integer.parseInt(id), text);
         }
-        String command = "cd /; usr/sbin/plesk bin license -i " + keys.get(0).toString().trim();
+        String command = "cd /; usr/sbin/plesk bin license -i " + keys.get(0).trim();
         System.out.println(keys.get(0));
         runCommand(command, sshPass, sshLogin, sshHost);
 
