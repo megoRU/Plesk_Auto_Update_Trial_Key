@@ -3,14 +3,11 @@
 [![GitHub stars](https://img.shields.io/github/stars/megoRU/Plesk_Auto_Update_Trial_Key)](https://github.com/megoRU/Plesk_Auto_Update_Trial_Key/stargazers)
 [![GitHub license](https://img.shields.io/github/license/megoRU/Plesk_Auto_Update_Trial_Key)](https://github.com/megoRU/Plesk_Auto_Update_Trial_Key/blob/master/LICENSE)
 
-# Plesk auto-update trial key
-Plesk trial key auto-update
-
 ## Disclaimer
-
-
 <b>I am against the abuse of free licenses. This code is presented for informational purposes only. Using it can and probably violates Plesk rules. The author is not responsible for any material losses incurred by Plesk.</b>
 
+# Plesk auto-update trial key
+Plesk trial key auto update
 
 ## Create table in MySQL:
 
@@ -44,6 +41,10 @@ screen -dmS pleskKey bash -c "java -jar Plesk_Auto_Update_Trial_Key.jar "ip addr
 ## Get free key:
 https://www.plesk.com/plesk-free-download/ <br>
 https://temp-mail.org/ru/ <br>
+
+## Ideological inspirer
+
+[yashodhank](https://github.com/yashodhank)
 
 ## FAQ & Troubleshooting
 
