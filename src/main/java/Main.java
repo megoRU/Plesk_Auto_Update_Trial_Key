@@ -27,7 +27,9 @@ public class Main {
         String query = "SELECT id, text FROM Plesk WHERE id = 0";
         String delete = "DELETE FROM Plesk WHERE id = ?";
         String update = "UPDATE Plesk SET id = id - 1 WHERE id >= ?";
-        Connection conn = DriverManager.getConnection("jdbc:mysql://" + con + ":3306/" + databaseName + "?useSSL=false&serverTimezone=UTC&characterEncoding=utf8", user, pass);
+        Connection conn = DriverManager.getConnection(
+            "jdbc:mysql://" + con + ":3306/" + databaseName
+                + "?useSSL=false&serverTimezone=UTC&characterEncoding=utf8", user, pass);
         Statement statement = conn.createStatement();
         ResultSet rs = statement.executeQuery(query);
         while (rs.next()) {
@@ -52,10 +54,13 @@ public class Main {
         preparedStmt.close();
         preparedStmt2.close();
         conn.close();
-        //sleep 11,5 days
-        Thread.sleep(999999999);
+        //sleep 10 days
+        Thread.sleep(864000000);
+        //sleep 4 days
+        Thread.sleep(345600000);
       }
     } catch (Exception ex) {
+      Thread.currentThread().interrupt();
       ex.printStackTrace();
     }
   }
@@ -82,8 +87,9 @@ public class Main {
       while (true) {
         while (in.available() > 0) {
           int i = in.read(tmp, 0, 1024);
-          if (i < 0)
+          if (i < 0) {
             break;
+          }
           System.out.print(new String(tmp, 0, i));
         }
         if (channel.isClosed()) {
@@ -92,8 +98,8 @@ public class Main {
         }
         try {
           Thread.sleep(1000);
-        } catch (Exception ee) {
-
+        } catch (Exception ignored) {
+          Thread.currentThread().interrupt();
         }
       }
       channel.disconnect();
