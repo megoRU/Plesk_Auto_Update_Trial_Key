@@ -13,16 +13,16 @@ Plesk trial key auto update
 
 ```
 CREATE TABLE `Plesk` (
-  `id` int(6) NOT NULL,
+  `id` int(6) NOT NULL AUTO_INCREMENT,
   `text` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `text` (`text`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 ```
-INSERT INTO Plesk (id, text) values (0, "Your Key");
-INSERT INTO Plesk (id, text) values (1, "Your Key2");
-INSERT INTO Plesk (id, text) values (2, "Your Key3");
+INSERT INTO Plesk (text) values ("Your Key");
+INSERT INTO Plesk (text) values ("Your Key2");
+INSERT INTO Plesk (text) values ("Your Key3");
 ```
 
 ##  Run on Windows:
